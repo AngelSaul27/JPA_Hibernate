@@ -8,7 +8,7 @@
         <!--
         POR DEFECTO HIBERNATE MAPEA TODAS LAS CLASES QUE TIENEN LA NOTACIÓN @ENTITY
         AUNQUE TAMBIEN ES POSIBLE MAPEARLAS DE LA SIGUIENTE MANERA:
-        <class>com.hibernate.modelo.Producto</class>
+        <class>com.hibernate.model.Producto</class>
         -->
 
         <properties>
