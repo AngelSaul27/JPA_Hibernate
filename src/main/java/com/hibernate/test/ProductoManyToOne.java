@@ -12,7 +12,22 @@ import java.math.BigDecimal;
 public class ProductoManyToOne {
 
     public static void main(String[] args) {
-        Categoria categoria = new Categoria("Computo");
+
+        insertarElementos();
+        EntityManager entityManager = JPAUtils.getEntityManager();
+        ProductoDAO productoDAO = new ProductoDAO(entityManager);
+        CategoriaDAO categoriaDAO = new CategoriaDAO(entityManager);
+
+        productoDAO.listar().forEach(producto -> {
+            System.out.println(producto.getNombre());
+        });
+        categoriaDAO.listar().forEach(categoria -> {
+            System.out.println(categoria.getNombre());
+        });
+    }
+
+    private static void insertarElementos() {
+        Categoria categoria = new Categoria("Electronica");
         Producto producto = new Producto("Laptop", "Lapton Ryzen", new BigDecimal("1000"), categoria);
 
         EntityManager entityManager = JPAUtils.getEntityManager();
@@ -24,6 +39,5 @@ public class ProductoManyToOne {
         productoDAO.guardar(producto);
         entityManager.getTransaction().commit();
         entityManager.close();
-
     }
 }

@@ -4,7 +4,7 @@ package com.hibernate.dao;
 import com.hibernate.model.Producto;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
+import javax.persistence.Query;
 import java.util.List;
 
 public class ProductoDAO {
@@ -19,19 +19,19 @@ public class ProductoDAO {
         this.em.persist(producto);
     }
 
-    public void actualizar(Producto producto, Long id){
-
-
-        this.em.persist(producto);
+    public void actualizar(Producto producto){
+        this.em.merge(producto);
+        this.em.flush();
     }
 
-    public void eliminar(Long id){
-
+    public void eliminar(Producto producto){
+        producto = this.em.merge(producto);
+        this.em.remove(producto);
     }
 
    public List<Producto> listar(){
-
-        return new ArrayList<>();
+        String JPQL  = "SELECT p FROM Producto p";
+       return em.createQuery(JPQL , Producto.class).getResultList();
    }
 
 }

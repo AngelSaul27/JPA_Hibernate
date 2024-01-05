@@ -15,6 +15,10 @@ public class Categoria {
         this.nombre = nombre;
     }
 
+    public Categoria() {
+
+    }
+
     public Long getId() {
         return id;
     }
