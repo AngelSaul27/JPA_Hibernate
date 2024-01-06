@@ -4,9 +4,10 @@ package com.hibernate.dao;
 import com.hibernate.model.Producto;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.math.BigDecimal;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class ProductoDAO {
 
     private EntityManager em;
@@ -31,7 +32,25 @@ public class ProductoDAO {
 
    public List<Producto> listar(){
         String JPQL  = "SELECT p FROM Producto p";
-       return em.createQuery(JPQL , Producto.class).getResultList();
+        return em.createQuery(JPQL , Producto.class).getResultList();
    }
 
+   public List<Producto> listarPorNombre(String nombre){
+        String JPQL = "SELECT P FROM Producto AS P WHERE nombre=:nombre";
+        return em.createQuery(JPQL, Producto.class).setParameter("nombre", nombre).getResultList();
+   }
+
+   public List<Producto> listarPorNombreDeCategoria(String categoriaNombre){
+        String JPQL = "SELECT P FROM Producto AS P WHERE P.categoria.nombre =:nombre";
+        return em.createQuery(JPQL,Producto.class).setParameter("nombre", categoriaNombre).getResultList();
+   }
+
+   public BigDecimal consultarPrecioPorNombreDeProducto(String nombre){
+        String JPQL = "SELECT P.precio FROM Producto AS P WHERE P.nombre = :nombre";
+        return em.createQuery(JPQL, BigDecimal.class).setParameter("nombre", nombre).getSingleResult();
+   }
+
+    public Producto consultaPorId(Long id) {
+        return em.find(Producto.class, id);
+    }
 }

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@SuppressWarnings("all")
 @Entity
 @Table(name = "productos")
 public class Producto {
@@ -23,6 +24,7 @@ public class Producto {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.categoria = categoria;
     }
 
     public Producto() {
