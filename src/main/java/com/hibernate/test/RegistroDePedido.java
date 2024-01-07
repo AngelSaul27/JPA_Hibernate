@@ -10,6 +10,7 @@ import com.hibernate.util.JPAUtils;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
+@SuppressWarnings("all")
 public class RegistroDePedido {
 
     public static void main(String[] args) {

@@ -11,8 +11,8 @@ import com.hibernate.vo.RelatorioDeVenta;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
+@SuppressWarnings("all")
 public class ConsultasAvanzadas {
 
     public static void main(String[] args) {
