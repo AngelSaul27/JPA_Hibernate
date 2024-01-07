@@ -6,11 +6,14 @@ import com.hibernate.dao.PedidoDAO;
 import com.hibernate.dao.ProductoDAO;
 import com.hibernate.model.*;
 import com.hibernate.util.JPAUtils;
+import com.hibernate.vo.RelatorioDeVenta;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Objects;
 
-public class RegistroDePedido {
+public class ConsultasAvanzadas {
 
     public static void main(String[] args) {
         registrarProducto();
@@ -31,6 +34,16 @@ public class RegistroDePedido {
 
         BigDecimal valorTotal = pedidoDAO.valorTotalVendido();
         System.out.println(valorTotal);
+
+        List<Object[]> relatorio = pedidoDAO.relatorioEventos();
+        for (Object[] objects: relatorio){
+            System.out.print(objects[0]);
+            System.out.print(objects[1] + " ");
+            System.out.print(objects[2] + "\n");
+        }
+
+        List<RelatorioDeVenta> relatorioDeVentas = pedidoDAO.relatorioEventosVO();
+        relatorioDeVentas.forEach(System.out::println);
     }
     private static void registrarProducto() {
         EntityManager em = JPAUtils.getEntityManager();

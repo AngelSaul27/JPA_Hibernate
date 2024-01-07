@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("all")
@@ -21,18 +20,12 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
 
-    /*
-        @ManyToMany solo cuando la impletación es sencilla (producto_id y pedido_id)
-        @JoinTable(name = "item_pedido") para evitar la creación de un entity
-        private List<Productos> productos;
-    */
-
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) //ManyToOne OneToMany
     private List<ItemsPedido> itemsPedidos = new ArrayList<>();
 
-    public Pedido(Cliente cliente){
-        this.cliente = cliente;
-    }
+    public Pedido(Cliente cliente){ this.cliente = cliente; }
+
+    public Pedido(){}
 
     //Relación bidireccional
     public void agregarItems(ItemsPedido itemsPedido){
@@ -40,8 +33,6 @@ public class Pedido {
         this.itemsPedidos.add(itemsPedido); //Añadimos el item pedido a la lista pedidos
         this.valorTotal = this.valorTotal.add(itemsPedido.getValor());
     }
-
-    public Pedido(){}
 
     public Cliente getCliente() {
         return cliente;
