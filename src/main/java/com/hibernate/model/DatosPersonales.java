@@ -1,9 +1,10 @@
 package com.hibernate.model;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class DatosPersonales {
+public class DatosPersonales implements Serializable {
     private String nombre;
     private String DNI;
 

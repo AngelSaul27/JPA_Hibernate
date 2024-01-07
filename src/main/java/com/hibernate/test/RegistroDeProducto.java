@@ -3,6 +3,7 @@ package com.hibernate.test;
 import com.hibernate.dao.CategoriaDAO;
 import com.hibernate.dao.ProductoDAO;
 import com.hibernate.model.Categoria;
+import com.hibernate.model.CategoriaId;
 import com.hibernate.model.Producto;
 import com.hibernate.util.JPAUtils;
 
@@ -22,6 +23,8 @@ public class RegistroDeProducto {
         BigDecimal precio = productoDao.consultarPrecioPorNombreDeProducto("Xiaomi Redmi");
         System.out.println(precio);
 
+        Categoria categoria = em.find(Categoria.class, new CategoriaId("CELULARES", "123"));
+        System.out.println(categoria.getNombre());
     }
 
     private static void registrarProducto() {
