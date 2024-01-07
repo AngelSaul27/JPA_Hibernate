@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @SuppressWarnings("all")
 @Entity
 @Table(name = "productos")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Producto {
 
     @Id
